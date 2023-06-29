@@ -15,11 +15,13 @@ def ping():
 
 @app.route('/products', methods=['GET'])
 def getProducts():
-    return jsonify(products)
-
-@app.route('/productsPropiedades', methods=['GET'])
-def getProductsPropiedades():
     return jsonify({'products' : products})
+
+@app.route('/products/<string:product_name>')
+def getProduct(product_name):
+    final_product = [product for product in products if product['name'] == product_name]
+    return jsonify({'product' : final_product[0]})
+
 
 
 if __name__ == '__main__':
