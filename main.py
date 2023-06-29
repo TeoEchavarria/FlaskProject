@@ -20,7 +20,11 @@ def getProducts():
 @app.route('/products/<string:product_name>')
 def getProduct(product_name):
     final_product = [product for product in products if product['name'] == product_name]
-    return jsonify({'product' : final_product[0]})
+
+    if (len(final_product)) > 0 :
+        return jsonify({'product' : final_product[0]})
+    else:
+        return jsonify({'message':'Product Not Found'})
 
 
 
