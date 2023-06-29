@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -11,7 +11,15 @@ def hello():
 
 @app.route('/ping')
 def ping():
-    return products
+    return jsonify({"message":"pong"})
+
+@app.route('/products', methods=['GET'])
+def getProducts():
+    return jsonify(products)
+
+@app.route('/productsPropiedades', methods=['GET'])
+def getProductsPropiedades():
+    return jsonify({'products' : products})
 
 
 if __name__ == '__main__':
